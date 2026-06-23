@@ -30,7 +30,7 @@ A performant 3D scene featuring a small glass fish bowl containing a school of l
 - Optional click-to-feed: a temporary food particle spawns and nearby fish steer toward it
 
 ### Performance Targets
-- Maintain 60 FPS with up to 50 fish on a modern desktop browser
+- Maintain 30 FPS with up to 30 fish on a modern desktop browser
 - Use instancing or vertex pooling for fish geometry when needed
 - Efficient bubble particle system using pooling and a particle budget
 - Minimize expensive per-pixel operations; prefer simple vertex displacement and lightweight fragment shaders
@@ -63,11 +63,11 @@ A performant 3D scene featuring a small glass fish bowl containing a school of l
 - Toggle controls for `caustics`, `bubbles`, and `fish trails`
 - Per-fish color palettes or species presets
 - Minimal post-processing bloom for highlights (toggleable)
-- Export a short GIF/MP4 capture of the scene (developer convenience)
+- Export a short 3 second GIF capture of the scene (developer convenience)
 
 ## Notes on Testing and Performance
 
-- Test on an integrated GPU (laptop) and a discrete GPU to verify 60 FPS target
+- Test on an integrated GPU (laptop) and a discrete GPU to verify 30 FPS target
 - Use the browser devtools FPS meter and `requestAnimationFrame` timing to identify hotspots
 - Reduce particle budget and neighbor-check radius to improve performance when needed
 
