@@ -22,6 +22,6 @@
         "allow": ["log", "error"]
       }
     ],
-    "@typescript-eslint/explicit-function-return-types": "warn"
+    "@typescript-eslint/explicit-function-return-type": "warn"
   }
 }
