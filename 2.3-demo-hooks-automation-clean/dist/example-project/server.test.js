@@ -4,7 +4,7 @@
  * These tests call the exported route handlers directly so they work
  * in environments where opening sockets is blocked.
  */
-import { createNote, deleteNote, getAllNotes, getNoteById, notes, updateNote, healthCheck, } from './server';
+import { default as app, createNote, deleteNote, getAllNotes, getNoteById, notes, updateNote, healthCheck, } from './server';
 class MockResponse {
     statusCode = 200;
     body = undefined;
@@ -42,6 +42,15 @@ describe('Notes API', () => {
             getAllNotes({}, response);
             expect(response.statusCode).toBe(200);
             expect(response.body).toEqual([]);
+        });
+    });
+    describe('GET /', () => {
+        it('should register a GET route as an alias for /notes', () => {
+            const routeStack = app._router?.stack ?? [];
+            const hasRootGetRoute = routeStack.some((layer) => {
+                return layer.route?.path === '/' && layer.route.methods?.get === true;
+            });
+            expect(hasRootGetRoute).toBe(true);
         });
     });
     describe('POST /notes', () => {

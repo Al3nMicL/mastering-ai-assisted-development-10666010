@@ -6,6 +6,7 @@
  */
 
 import {
+  default as app,
   createNote,
   deleteNote,
   getAllNotes,
@@ -63,6 +64,24 @@ describe('Notes API', () => {
 
       expect(response.statusCode).toBe(200);
       expect(response.body).toEqual([]);
+    });
+  });
+
+  describe('GET /', () => {
+    it('should register a GET route as an alias for /notes', () => {
+      type RouteLayer = {
+        route?: {
+          path?: string;
+          methods?: Record<string, boolean>;
+        };
+      };
+
+      const routeStack = (app as unknown as { _router?: { stack?: RouteLayer[] } })._router?.stack ?? [];
+      const hasRootGetRoute = routeStack.some((layer) => {
+        return layer.route?.path === '/' && layer.route.methods?.get === true;
+      });
+
+      expect(hasRootGetRoute).toBe(true);
     });
   });
 
