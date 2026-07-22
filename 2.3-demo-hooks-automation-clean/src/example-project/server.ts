@@ -143,6 +143,14 @@ export function healthCheck(_req: NoteRequest, res: NoteResponse): void {
 // Routes
 
 /**
+ * GET /
+ * Alias for retrieving all notes
+ */
+app.get('/', (req, res) => {
+  getAllNotes(req, res);
+});
+
+/**
  * GET /notes
  * Retrieve all notes
  */
